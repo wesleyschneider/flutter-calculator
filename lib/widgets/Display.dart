@@ -6,6 +6,12 @@ class Display extends StatelessWidget {
   final TextStyle _principalTextStyle = TextStyle(
       fontWeight: FontWeight.bold, color: Colors.black, letterSpacing: 3);
 
+  Display({this.bufferExpressions, this.bufferResult})
+      : super(key: new Key(bufferExpressions + bufferResult));
+
+  final String bufferExpressions;
+  final String bufferResult;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,9 +23,9 @@ class Display extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            TextExpression(),
+            TextExpression(text: bufferExpressions),
             Text(
-              '12.936',
+              bufferResult,
               style: Theme.of(context)
                   .textTheme
                   .headline3
