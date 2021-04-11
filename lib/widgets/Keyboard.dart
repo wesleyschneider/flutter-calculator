@@ -12,6 +12,12 @@ class Keyboard extends StatelessWidget {
   final EdgeInsets _padding = EdgeInsets.all(30);
   final MainAxisAlignment _mainAxisAlignment = MainAxisAlignment.spaceBetween;
 
+  final Function(String value) handleBufferExpressions;
+  final VoidCallback clearAll;
+  final VoidCallback backspace;
+
+  Keyboard({this.handleBufferExpressions, this.clearAll, this.backspace});
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -28,18 +34,22 @@ class Keyboard extends StatelessWidget {
                 ButtonKeyboard(
                   text: 'AC',
                   color: Colors.green,
+                  onPressed: () => clearAll(),
                 ),
                 ButtonKeyboard(
-                  text: 'C',
+                  iconName: Icons.backspace_outlined,
                   color: Colors.green,
+                  onPressed: () => backspace(),
                 ),
                 ButtonKeyboard(
                   text: '%',
                   color: Colors.green,
+                  onPressed: () => handleBufferExpressions('%'),
                 ),
                 ButtonKeyboard(
                   text: '/',
                   color: Colors.red,
+                  onPressed: () => handleBufferExpressions('/'),
                 ),
               ],
             ),
@@ -48,16 +58,20 @@ class Keyboard extends StatelessWidget {
               children: <Widget>[
                 ButtonKeyboard(
                   text: '7',
+                  onPressed: () => handleBufferExpressions('7'),
                 ),
                 ButtonKeyboard(
                   text: '8',
+                  onPressed: () => handleBufferExpressions('8'),
                 ),
                 ButtonKeyboard(
                   text: '9',
+                  onPressed: () => handleBufferExpressions('9'),
                 ),
                 ButtonKeyboard(
                   iconName: Icons.close,
                   color: Colors.red,
+                  onPressed: () => handleBufferExpressions('x'),
                 ),
               ],
             ),
@@ -66,16 +80,20 @@ class Keyboard extends StatelessWidget {
               children: <Widget>[
                 ButtonKeyboard(
                   text: '4',
+                  onPressed: () => handleBufferExpressions('4'),
                 ),
                 ButtonKeyboard(
                   text: '5',
+                  onPressed: () => handleBufferExpressions('5'),
                 ),
                 ButtonKeyboard(
                   text: '6',
+                  onPressed: () => handleBufferExpressions('6'),
                 ),
                 ButtonKeyboard(
                   iconName: Icons.remove,
                   color: Colors.red,
+                  onPressed: () => handleBufferExpressions('-'),
                 ),
               ],
             ),
@@ -84,16 +102,20 @@ class Keyboard extends StatelessWidget {
               children: <Widget>[
                 ButtonKeyboard(
                   text: '1',
+                  onPressed: () => handleBufferExpressions('1'),
                 ),
                 ButtonKeyboard(
                   text: '2',
+                  onPressed: () => handleBufferExpressions('2'),
                 ),
                 ButtonKeyboard(
                   text: '3',
+                  onPressed: () => handleBufferExpressions('3'),
                 ),
                 ButtonKeyboard(
                   iconName: Icons.add,
                   color: Colors.red,
+                  onPressed: () => handleBufferExpressions('+'),
                 ),
               ],
             ),
@@ -101,17 +123,18 @@ class Keyboard extends StatelessWidget {
               mainAxisAlignment: _mainAxisAlignment,
               children: <Widget>[
                 ButtonKeyboard(
-                  text: ',',
-                ),
-                ButtonKeyboard(
                   text: '0',
+                  onPressed: () => handleBufferExpressions('0'),
+                  bigButton: true,
                 ),
                 ButtonKeyboard(
-                  iconName: Icons.backspace_outlined,
+                  text: ',',
+                  onPressed: () => handleBufferExpressions(','),
                 ),
                 ButtonKeyboard(
-                  text: '-',
+                  text: '=',
                   color: Colors.red,
+                  onPressed: () => handleBufferExpressions('='),
                 ),
               ],
             )

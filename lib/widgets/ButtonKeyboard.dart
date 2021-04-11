@@ -9,12 +9,14 @@ class ButtonKeyboard extends StatelessWidget {
   final IconData iconName;
   final Color color;
   final Function onPressed;
+  final bool bigButton;
 
   ButtonKeyboard({
     this.text,
     this.iconName,
     this.color,
     this.onPressed,
+    this.bigButton,
   });
 
   @override
@@ -27,7 +29,7 @@ class ButtonKeyboard extends StatelessWidget {
         onTap: onPressed,
         child: Container(
           padding: EdgeInsets.all(25),
-          width: 80,
+          width: bigButton != null && bigButton ? 170 : 80,
           height: 80,
           child: Center(
             child: iconName != null
