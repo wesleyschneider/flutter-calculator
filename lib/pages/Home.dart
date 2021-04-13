@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:calculator/widgets/Display.dart';
 import 'package:calculator/widgets/Keyboard.dart';
-import 'package:flutter/material.dart';
 import 'package:calculator/utils/expressions.dart';
+import 'package:calculator/utils/operations.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,10 +13,15 @@ class _HomeState extends State<Home> {
   final Color _backgroundColor = Colors.white;
 
   List<String> listValues = [];
-  String bufferResult = '1.216';
+  String bufferResult = '';
 
   void handleBufferExpressions(String value) {
     setState(() {
+      if (value == '=') {
+        handleBufferResult();
+        return;
+      }
+
       if (value == ',') {
         if (listValues.length == 0) {
           listValues.add('0' + value);
@@ -34,6 +40,7 @@ class _HomeState extends State<Home> {
       if (listExpressions.indexOf(value) == -1) {
         if (listValues.length == 0) {
           listValues.add(value);
+          return;
         }
 
         if (listExpressions.indexOf(listValues.last) > -1) {
@@ -62,6 +69,7 @@ class _HomeState extends State<Home> {
   void clearAll() {
     setState(() {
       listValues.clear();
+      bufferResult = '';
     });
   }
 
@@ -73,28 +81,43 @@ class _HomeState extends State<Home> {
       } else {
         listValues.removeLast();
       }
+
+      handleBufferResult();
+    });
+  }
+
+  void handleBufferResult() {
+    setState(() {
+      if (listValues.length == 0) {
+        return;
+      }
+
+      String mathExpression = listValues.join('').replaceAll(',', '.');
+
+      double total = calculeExpression(mathExpression);
+
+      bufferResult = total % 1 == 0
+          ? total.toInt().toString()
+          : total.toString().replaceAll('.', ',');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Container(
-        color: _backgroundColor,
-        child: Column(
-          children: <Widget>[
-            Display(
-              bufferExpressions: listValues.join(' '),
-              bufferResult: bufferResult,
-            ),
-            Keyboard(
-              handleBufferExpressions: handleBufferExpressions,
-              clearAll: clearAll,
-              backspace: backspace,
-            ),
-          ],
-        ),
+    return Container(
+      color: _backgroundColor,
+      child: Column(
+        children: <Widget>[
+          Display(
+            bufferExpressions: listValues.join(' '),
+            bufferResult: bufferResult,
+          ),
+          Keyboard(
+            handleBufferExpressions: handleBufferExpressions,
+            clearAll: clearAll,
+            backspace: backspace,
+          ),
+        ],
       ),
     );
   }

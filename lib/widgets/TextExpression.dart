@@ -18,7 +18,10 @@ class TextExpression extends StatefulWidget {
 
 class _TextExpressionState extends State<TextExpression> {
   final TextStyle _secundaryTextStyle = TextStyle(
-      fontWeight: FontWeight.w400, color: Colors.black, letterSpacing: 3);
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+      letterSpacing: 3,
+      fontSize: 22);
   final TextStyle _operatorTextStyle = TextStyle(color: Colors.red);
 
   List<TextBuffer> textBuffer;

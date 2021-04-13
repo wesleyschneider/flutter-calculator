@@ -42,7 +42,7 @@ class Keyboard extends StatelessWidget {
                   onPressed: () => backspace(),
                 ),
                 ButtonKeyboard(
-                  text: '%',
+                  text: '+/-',
                   color: Colors.green,
                   onPressed: () => handleBufferExpressions('%'),
                 ),

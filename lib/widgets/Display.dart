@@ -28,7 +28,7 @@ class Display extends StatelessWidget {
               bufferResult,
               style: Theme.of(context)
                   .textTheme
-                  .headline3
+                  .headline4
                   .merge(_principalTextStyle),
             )
           ],
