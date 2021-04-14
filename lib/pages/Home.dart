@@ -78,11 +78,14 @@ class _HomeState extends State<Home> {
       if (listValues.last.length > 1) {
         listValues[listValues.length - 1] = listValues.last.replaceRange(
             listValues.last.length - 1, listValues.last.length, '');
+
+        handleBufferResult();
+        return;
       } else {
         listValues.removeLast();
       }
 
-      handleBufferResult();
+      bufferResult = '';
     });
   }
 
