@@ -15,8 +15,13 @@ class Keyboard extends StatelessWidget {
   final Function(String value) handleBufferExpressions;
   final VoidCallback clearAll;
   final VoidCallback backspace;
+  final VoidCallback changePositiveNegative;
 
-  Keyboard({this.handleBufferExpressions, this.clearAll, this.backspace});
+  Keyboard(
+      {this.handleBufferExpressions,
+      this.clearAll,
+      this.backspace,
+      this.changePositiveNegative});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,7 @@ class Keyboard extends StatelessWidget {
                 ButtonKeyboard(
                   text: '+/-',
                   color: Colors.green,
-                  onPressed: () => handleBufferExpressions('%'),
+                  onPressed: () => changePositiveNegative(),
                 ),
                 ButtonKeyboard(
                   text: '/',

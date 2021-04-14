@@ -86,6 +86,25 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void changePositiveNegative() {
+    if (listValues.length == 0) {
+      return;
+    }
+
+    if (listExpressions.indexOf(listValues.last) > -1) {
+      return;
+    }
+
+    setState(() {
+      var newValue = listValues.last.indexOf('-') > -1
+          ? listValues.last.replaceAll('-', '')
+          : "-${listValues.last}";
+
+      listValues.last = newValue;
+      bufferResult = '';
+    });
+  }
+
   void handleBufferResult() {
     setState(() {
       if (listValues.length == 0) {
@@ -116,6 +135,7 @@ class _HomeState extends State<Home> {
             handleBufferExpressions: handleBufferExpressions,
             clearAll: clearAll,
             backspace: backspace,
+            changePositiveNegative: changePositiveNegative,
           ),
         ],
       ),
