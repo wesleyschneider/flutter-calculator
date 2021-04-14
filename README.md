@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/wesleyschneider/flutter-contact-card/blob/main/assets/example.gif" style="text-align: center;"  />
+  <img src="https://github.com/wesleyschneider/flutter-calculator/blob/main/assets/example.gif" style="text-align: center;"  />
 </p>
 
 
