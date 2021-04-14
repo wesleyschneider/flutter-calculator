@@ -10,7 +10,8 @@
   <img src="https://github.com/wesleyschneider/flutter-calculator/blob/main/assets/example.gif" style="text-align: center;"  />
 </p>
 
-
+Inspired by [Lucia Scott's design](https://dribbble.com/shots/14709020-Calculator)
+ 
 ## Copyright and license
 
 Code copyright 2021 the author. Code released under the [MIT License](https://github.com/wesleyschneider/flutter-calculator/blob/main/LICENSE).
