@@ -1,16 +1,12 @@
-import 'package:calculator/widgets/TextExpression.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:calculator/provider/CalculatorModel.dart';
+import 'package:calculator/widgets/TextExpression.dart';
 
 class Display extends StatelessWidget {
   final EdgeInsets _padding = EdgeInsets.all(30);
   final TextStyle _principalTextStyle = TextStyle(
       fontWeight: FontWeight.bold, color: Colors.black, letterSpacing: 3);
-
-  Display({this.bufferExpressions, this.bufferResult})
-      : super(key: new Key(bufferExpressions + bufferResult));
-
-  final String bufferExpressions;
-  final String bufferResult;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +19,17 @@ class Display extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            TextExpression(text: bufferExpressions),
-            Text(
-              bufferResult,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4
-                  .merge(_principalTextStyle),
+            TextExpression(),
+            Consumer<CalculatorModel>(
+              builder: (context, calculator, child) {
+                return Text(
+                  calculator.bufferResult,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline4
+                      .merge(_principalTextStyle),
+                );
+              },
             )
           ],
         ),
