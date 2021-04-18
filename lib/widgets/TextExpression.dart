@@ -23,31 +23,29 @@ class TextExpression extends StatelessWidget {
         Theme.of(context).textTheme.headline5.merge(_secundaryTextStyle);
     final TextStyle _operatorTextStyle = TextStyle(color: Colors.red);
 
-    return Consumer<CalculatorModel>(
-      builder: (context, calculator, child) {
-        List<TextBuffer> textBuffer = calculator.listValues
-            .map(
-              (l) => new TextBuffer(l + ' ', listExpressions.indexOf(l) > -1),
-            )
-            .toList();
+    var calculator = context.watch<CalculatorModel>();
 
-        return RichText(
-          text: TextSpan(
-            text: '',
-            style: _textStyle,
-            children: textBuffer
-                .map(
-                  (t) => TextSpan(
-                    text: t.value,
-                    style: t.isExpression
-                        ? _textStyle.merge(_operatorTextStyle)
-                        : _textStyle,
-                  ),
-                )
-                .toList(),
-          ),
-        );
-      },
+    List<TextBuffer> textBuffer = calculator.listValues
+        .map(
+          (l) => new TextBuffer(l + ' ', listExpressions.indexOf(l) > -1),
+        )
+        .toList();
+
+    return RichText(
+      text: TextSpan(
+        text: '',
+        style: _textStyle,
+        children: textBuffer
+            .map(
+              (t) => TextSpan(
+                text: t.value,
+                style: t.isExpression
+                    ? _textStyle.merge(_operatorTextStyle)
+                    : _textStyle,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
